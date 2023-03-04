@@ -1,15 +1,14 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Synth msg="Synth this Page"/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Synth from './components/UseSynth.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+   Synth
   }
 }
 </script>
