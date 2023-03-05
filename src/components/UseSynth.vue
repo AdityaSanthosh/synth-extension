@@ -1,11 +1,13 @@
 <template>
   <div class="hello">
     <h3>Synth</h3>
-    <form v-on:submit="search">
+    <form @submit.prevent="search">
       <textarea id="search-bar" v-model="searchText" placeholder="Search the Page Content"></textarea>
       <button>Search</button>
     </form>
-    {{ results }}
+    <div v-for="item in results" :key="item.id">
+        <p>{{ item.match }}</p>
+      </div>
   </div>
 </template>
 
@@ -13,14 +15,14 @@
 export default {
   data: function() {
     return {
-      searchText: ""
+      searchText: "",
+      results: []
     }
   },
   methods:{
-    search(e) {
-      e.preventDefault();
-      let api = `https://https://synthbackend-1-c0058910.deta.app/search?query=${this.searchText}`
-      fetch(api).then(response => console.log(response));
+    async search() {
+      let api = `http://localhost:8000/search?query=${this.searchText}`
+      fetch(api).then(response => response.json()).then(prod => {this.results = prod})
     }
   },
   name: 'UseSynth',
